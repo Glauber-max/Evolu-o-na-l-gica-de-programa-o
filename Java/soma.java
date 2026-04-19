@@ -12,19 +12,6 @@ public class soma {
         System.out.println("a soma é " + soma);
         leitor.close();
     }
-    public void main() {
-        Scanner leitor = new Scanner(System.in);
-        System.out.print("digite seu nome ");
-        String nome = leitor.next();
-        System.out.print("digite a sua idade ");
-        int idade = leitor.nextInt();
-        if (idade >= 18) {
-            System.out.println("vc pode dirigir" + ", pois tem " + idade + " anos");
-        } else {
-            System.out.println("vc nao pode dirigir " + nome);
-        }
-        leitor.close();
-    }
            public static int CalcularSoma(int numero1, int numero2) {
         return numero1 + numero2;
     }
