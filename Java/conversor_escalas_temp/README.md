@@ -3,3 +3,5 @@ O programa é um Conversor de Escalas Termométricas desenvolvido em Java que ut
 Java jdk 17++
 import Scanner
 import Locale
+
+digite qualquer escala entre as que o programa converte, escolha temperatura inicial e por fim a escala de destino
