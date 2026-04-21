@@ -6,7 +6,3 @@ def calcular_media(list_numerica: list) -> float:
         numeros += numero
     media = numeros / qtd # por fim ela faz o calculo da média realmente
     return round(media, 2) 
-
-lista = [10, 9, 8, 10, 7, 5]
-medias = calcular_media(lista)
-print(medias)
