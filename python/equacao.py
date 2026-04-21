@@ -11,13 +11,3 @@ def doubleX(a: float, b: float, c:float):
         calculox1 = (-b + deltaR)  / (2 * a)
         calculox2 = (-b - deltaR) / (2 * a)
         return calculox1, calculox2
-
-x1, x2 = doubleX(a=1, b=-5, c=6)
-x3, x4 = doubleX(a=1, b=-5, c=6)
-x5, x6 = doubleX(a=0, b=0, c=9)
-print(x1)
-print(x2)
-print(x3)
-print(x4)
-print(x5)
-print(x6)
