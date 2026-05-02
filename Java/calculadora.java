@@ -2,19 +2,18 @@ package Java;
 import java.util.Scanner;
 import java.util.Map; 
 import java.util.HashMap;
-import java.math.*;
 public class calculadora {
     public static void main(String[] args) {
     Show calculadora = new Show();
     Scanner leitor = new Scanner(System.in);
-    System.out.print("escolha sua operação (media(m), soma(+), subtração(-), multiplicação(x), porcentagem(%)) ");
+    System.out.print("escolha sua operação (media(m), soma(+), subtração(-), multiplicação(x), porcentagem(%), potenciação(p)) ");
     String numero = leitor.nextLine();
-    System.out.print("escolha tambem quantos numeros participarão dessa operação ");
-    int tamanho = leitor.nextInt();
-    double[] lista = new double[tamanho];
     if (numero.equalsIgnoreCase("%")) {
         System.out.println("porcentagem só permite dois numeros, coloque o total e após isso a porcentagem que quer, ex: (100 X 10% = 10) ");
     }
+    System.out.print("escolha tambem quantos numeros participarão dessa operação ");
+    int tamanho = leitor.nextInt();
+    double[] lista = new double[tamanho];
     for (int i = 0; i < lista.length; i++) {
         System.out.print("escolha os numeros que quer fazer essa operação ");
         double num = leitor.nextDouble();
