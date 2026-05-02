@@ -29,7 +29,7 @@ abstract class Escala { // classe abstrata usada para dar uma função de conver
                 default -> throw new IllegalArgumentException("Erro: " + tipo + " não existe.");
         };
     }
-    public abstract double converterN(double valorI, String tipoFinal);
+    public abstract double  converterN(double valorI, String tipoFinal);
 }
 interface ConversorInter { // interface para usar um metodo abstrato
     public abstract double converter(String tipoinicial, double numeroInicial, String tipoFinal);
