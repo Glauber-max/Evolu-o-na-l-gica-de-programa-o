@@ -1,7 +1,7 @@
-package java; 
+
 public class media { // criar uma função que calcula a media, tentar ser o mais reutilizavel possivel
     public static void main(String[] args) { // defini a lista e atribui a uma variavel o calculo e printei
-        int[] media = {10, 8, 6, 8, 4, 3};
+        int[] media = {10, 8, 6, 8, 4, 2};
         float result = calcularMedia(media);
         System.out.println(result);
     }
