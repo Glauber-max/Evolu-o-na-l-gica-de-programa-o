@@ -6,7 +6,7 @@ public class calculadora {
     public static void main(String[] args) {
     Show calculadora = new Show();
     Scanner leitor = new Scanner(System.in);
-    System.out.print("escolha sua operação (media(m), soma(+), subtração(-), multiplicação(x), porcentagem(%), potenciação(p)) ");
+    System.out.print("escolha sua operação (media(m), soma(+), subtração(-), multiplicação(x), porcentagem(%)) ");
     String numero = leitor.nextLine();
     if (numero.equalsIgnoreCase("%")) {
         System.out.println("porcentagem só permite dois numeros, coloque o total e após isso a porcentagem que quer, ex: (100 X 10% = 10) ");

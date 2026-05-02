@@ -1,4 +1,4 @@
-package Java.conversor_escalas_temp;
+package conversor_escalas_temp;
 import java.util.Scanner;
 import java.util.Locale;
 
