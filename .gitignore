@@ -1,2 +1,4 @@
 #ignore paste of intellij
 .idea
+#paste of venv
+venv/
