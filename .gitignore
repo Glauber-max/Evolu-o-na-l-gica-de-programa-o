@@ -3,3 +3,6 @@
 #paste of venv
 venv/
 evolucaoLogica.iml
+
+#ignore paste intelij
+out/
