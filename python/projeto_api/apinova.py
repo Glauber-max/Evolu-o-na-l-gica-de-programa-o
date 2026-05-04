@@ -34,7 +34,7 @@ dadosIniciais = [
 library = FastAPI()
 
 #aqui seria como os dados serao adicionados no post
-class Livro(BaseModel):
+class Livraria(BaseModel):
     titulo: str
     autor: str
     genero: str
@@ -65,15 +65,15 @@ def books(genero: str = None, autor: str = None) -> list[dict]:
 
 #fazer uma rota post agora
 @library.post("/livros/adicionar") # o metodo post pede um conjunto de informações definido pela basemodel e se o id da base da
-def adicionar_livros(arquivos: Livro) -> dict: #base de dados existir, ele pega o ultimo e adiciona mais um(evitar erros no futuro)
+def adicionar_livros(arquivos: Livraria) -> list[dict]: #base de dados existir, ele pega o ultimo e adiciona mais um(evitar erros no futuro)
     if len(livros) > 0:
         livros_novo = livros[-1]["id"] + 1
     else:
         livros_novo = 1
     novo_livro = arquivos.model_dump() #transforma em dict, se junta com o id e da um merge na base de dados
-    novo_livro["id"] = livros_novo
+    novo_livro = {"id": livros_novo, **novo_livro}
     livros.append(novo_livro)
-    return {"mensagem": f"adicionado com sucesso o livro {novo_livro}"}
+    return livros
 
 #criar agora um metodo delete do http
 @library.delete("/livros/{id}/eliminar") #rastreia o livro pedido pra delete, se nao encontrar da um 404
@@ -86,9 +86,34 @@ def eliminar_livros(id: int) -> dict:
 
 #vamos criar agora o metodo put pra editar dados, vamos precisar do id, e dos dados que se quer atualizar
 @library.put("/livros/editar/{id}")
-def editar_livros(id: int, dados: Livro):
-    for livro in livros:
+def editar_livros(id: int, dados: Livraria) -> list[dict]:
+    for indice, livro in enumerate(livros): #usei enumerate pra conseguir o index e is dict
         if livro["id"] == id:
-            dados_novos = dados.model_dump()
-            livros[id] = dados_novos
-    return livros
+            livro_atualizado = dados.model_dump() #transformar o basemodel em dict
+            livro_atualizado = {"id": id, **livro_atualizado} #colocar o id na frente
+            livros[indice] = livro_atualizado #adicionar a base de dados
+            return livros
+    raise HTTPException(status_code=404, detail={"failed": "livro not found"})
+
+#criar agora um metodo patch pra atualizar livros
+@library.patch("/livros/atualizar/{id}")
+def atualizar_livros(
+        id: int, #basicamente peço o id e se ele n colocar nada nao atualiza
+        queryTitulo: str = None,
+        queryAutor: str = None,
+        queryGenero: str = None,
+        queryPaginas: int = None
+)-> list[dict]:
+    for indice, livro in enumerate(livros): #pego o indice e os dict e localizo oq ele quer
+        if livro["id"] == id:
+            if queryTitulo: #se alguma delas forem verdadeiras, a função atualiza os valores e retorna os livros
+                livros[indice]["titulo"] = queryTitulo
+            if queryAutor:
+                livros[indice]["autor"] = queryAutor
+            if queryGenero:
+                livros[indice]["genero"] = queryGenero
+            if queryPaginas:
+                livros[indice]["paginas"] = queryPaginas
+
+            return livros
+    raise HTTPException(status_code=404, detail={"failed": "livro not found"})
